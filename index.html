@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AS Detailing | Final Stable Version</title>
+    <title>AS Detailing | Premium Performance</title>
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
@@ -18,88 +18,74 @@
         html { scroll-behavior: smooth; }
         body { background-color: #0a0a0a; color: var(--white); overflow-x: hidden; line-height: 1.6; }
 
-        /* --- PRELOADER ORIGINAL (RESTAURADO) --- */
+        /* --- PRELOADER --- */
         #preloader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #000; z-index: 10000; display: flex;
             flex-direction: column; align-items: center; justify-content: center;
             transition: opacity 0.8s ease, visibility 0.8s;
         }
-        .loader-logo {
-            font-weight: 700; font-size: 2rem; letter-spacing: 5px; color: #fff;
-            margin-bottom: 20px; text-transform: uppercase;
-        }
-        .loader-bar-container {
-            width: 200px; height: 2px; background: rgba(255,255,255,0.1);
-            position: relative; overflow: hidden; border-radius: 10px;
-        }
-        .loader-bar {
-            position: absolute; width: 0; height: 100%;
-            background: var(--secondary); box-shadow: 0 0 15px var(--secondary);
-            animation: load 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
+        .loader-logo { font-weight: 700; font-size: 2rem; letter-spacing: 5px; color: #fff; margin-bottom: 20px; text-transform: uppercase; }
+        .loader-logo span { color: var(--secondary); }
+        .loader-bar-container { width: 200px; height: 2px; background: rgba(255,255,255,0.1); position: relative; overflow: hidden; border-radius: 10px; }
+        .loader-bar { position: absolute; width: 0; height: 100%; background: var(--secondary); box-shadow: 0 0 15px var(--secondary); animation: load 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
         @keyframes load { 0% { width: 0; } 100% { width: 100%; } }
         .loaded #preloader { opacity: 0; visibility: hidden; }
 
-        /* --- MENÚ VERIFICADO (FULL ELEMENTS) --- */
-        header { 
-            position: fixed; top: 0; width: 100%; z-index: 9999; 
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); 
-            padding: 15px 0; border-bottom: 1px solid var(--glass-border); 
-        }
+        /* --- NAVIGATION --- */
+        header { position: fixed; top: 0; width: 100%; z-index: 9999; background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); padding: 15px 0; border-bottom: 1px solid var(--glass-border); }
         nav { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; text-decoration: none; color: var(--white); }
         .logo span { color: var(--secondary); }
-        
         .menu-toggle { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
-
         .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
-        .nav-links a { color: white; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; font-weight: 400; }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--secondary); }
 
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
-            .nav-links {
-                position: fixed; top: 0; right: -100%; height: 100vh; width: 75%;
-                background: rgba(0, 0, 0, 0.98); backdrop-filter: blur(20px);
-                flex-direction: column; justify-content: center; 
-                transition: 0.5s ease; border-left: 1px solid var(--secondary);
-            }
+            .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 75%; background: rgba(0, 0, 0, 0.98); backdrop-filter: blur(20px); flex-direction: column; justify-content: center; transition: 0.5s ease; }
             .nav-links.active { right: 0; }
-            .nav-links li { margin: 15px 0; }
         }
 
         .lang-btn { background: transparent; border: 1px solid var(--secondary); color: white; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 
-        /* --- HERO & TITLES --- */
+        /* --- HERO --- */
         .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1599256621730-535171e28e50?q=80&w=2000'); background-size: cover; background-position: center; }
         .premium-title { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 700; letter-spacing: 5px; text-transform: uppercase; background: linear-gradient(to right, #fff, var(--secondary), #fff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 4s linear infinite; }
         @keyframes shine { to { background-position: 200% center; } }
-        .section-title { text-align: center; font-size: clamp(1.5rem, 5vw, 2.2rem); margin: 50px 0; text-transform: uppercase; letter-spacing: 6px; }
+        .section-title { text-align: center; font-size: clamp(1.5rem, 5vw, 2.2rem); margin: 60px 0; text-transform: uppercase; letter-spacing: 6px; }
 
-        /* --- GALLERY SHOWCASE --- */
+        /* --- GALLERY --- */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 0 20px; max-width: 1200px; margin: 0 auto 50px; }
         .gallery-item { position: relative; height: 300px; border-radius: 15px; overflow: hidden; border: 1px solid var(--glass-border); cursor: pointer; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
         .gallery-item:hover img { transform: scale(1.1); }
         .item-overlay { position: absolute; bottom: 0; left: 0; width: 100%; height: 40%; background: linear-gradient(transparent, rgba(0,123,255,0.8)); display: flex; align-items: flex-end; padding: 20px; opacity: 0; transition: 0.4s; }
         .gallery-item:hover .item-overlay { opacity: 1; }
+        .item-overlay span { color: white; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
 
-        /* --- PRICING GRILL --- */
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px 50px; max-width: 1200px; margin: auto; }
+        /* --- PRICING --- */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px 60px; max-width: 1200px; margin: auto; }
         .price-card { background: var(--glass); backdrop-filter: blur(15px); padding: 25px; border-radius: 15px; border: 1px solid var(--glass-border); transition: 0.4s; display: flex; flex-direction: column; }
+        .price-card:hover { transform: translateY(-10px); border-color: var(--secondary); }
         .price-card h3 { color: var(--secondary); font-size: 1rem; margin-bottom: 5px; text-transform: uppercase; text-decoration: underline; font-style: italic; }
         .duration { font-size: 0.75rem; color: #888; margin-bottom: 15px; font-style: italic; }
         .price-list { list-style: none; margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
         .price-list li { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 5px; color: #eee; font-weight: bold; }
         .service-cat { font-size: 0.8rem; color: var(--secondary); font-weight: bold; text-transform: uppercase; margin-top: 10px; display: block; }
         .service-desc { font-size: 0.8rem; color: #ccc; margin-bottom: 10px; line-height: 1.4; }
-        .btn-premium { margin-top: auto; width: 100%; padding: 12px; background: var(--secondary); color: white; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; border: none; cursor: pointer; }
+        .btn-premium { margin-top: auto; width: 100%; padding: 12px; background: var(--secondary); color: white; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; border: none; cursor: pointer; transition: 0.3s; }
+
+        /* --- FOOTER (REVISADO) --- */
+        footer { padding: 80px 20px; text-align: center; border-top: 1px solid var(--glass-border); background: #050505; position: relative; z-index: 10; }
+        .footer-socials { display: flex; justify-content: center; gap: 25px; margin-bottom: 40px; }
+        .social-btn { width: 55px; height: 55px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 1.4rem; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .social-btn:hover { background: var(--secondary); border-color: var(--secondary); transform: translateY(-8px); box-shadow: 0 0 25px rgba(0, 123, 255, 0.5); }
+        .copyright-text { font-size: 0.8rem; color: #888; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; }
 
         .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        footer { padding: 40px; text-align: center; border-top: 1px solid var(--glass-border); font-size: 0.7rem; color: #666; }
     </style>
 </head>
 <body>
@@ -129,19 +115,19 @@
             <h1 class="premium-title">
                 <span data-en="PERFECTION IS THE STANDARD" data-es="LA PERFECCIÓN ES EL ESTÁNDAR">PERFECTION IS THE STANDARD</span>
             </h1>
-            <p style="text-align:center; opacity: 0.8;">
-                <span data-en="High-end automotive care" data-es="Cuidado automotriz de alta gama">High-end automotive care</span>
-            </p>
         </div>
     </section>
 
     <section id="gallery">
-        <h2 class="section-title reveal" data-en="WORK SHOWCASE" data-es="GALERÍA DE TRABAJOS">WORK SHOWCASE</h2>
-        <div class="gallery-grid reveal">
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?q=80&w=800"><div class="item-overlay"><span data-en="Interior Pro" data-es="Interior Pro">Interior Pro</span></div></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?q=80&w=800"><div class="item-overlay"><span data-en="Paint Correction" data-es="Corrección Pintura">Paint Correction</span></div></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1552930294-6b595f4c2974?q=80&w=800"><div class="item-overlay"><span data-en="Ceramic Coating" data-es="Cerámico">Ceramic Coating</span></div></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1597404298347-881a499017ad?q=80&w=800"><div class="item-overlay"><span data-en="Engine Bay" data-es="Limpieza Motor">Engine Bay</span></div></div>
+        <h2 class="section-title reveal">
+            <span data-en="WORK" data-es="NUESTRO">WORK</span> 
+            <span data-en="SHOWCASE" data-es="TRABAJO">SHOWCASE</span>
+        </h2>
+        <div class="gallery-grid">
+            <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?q=80&w=800"><div class="item-overlay"><span data-en="Interior Pro" data-es="Interior Pro">Interior Pro</span></div></div>
+            <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?q=80&w=800"><div class="item-overlay"><span data-en="Paint Correction" data-es="Corrección Pintura">Paint Correction</span></div></div>
+            <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1552930294-6b595f4c2974?q=80&w=800"><div class="item-overlay"><span data-en="Ceramic Coating" data-es="Cerámico">Ceramic Coating</span></div></div>
+            <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1597404298347-881a499017ad?q=80&w=800"><div class="item-overlay"><span data-en="Engine Bay" data-es="Limpieza Motor">Engine Bay</span></div></div>
         </div>
     </section>
 
@@ -200,7 +186,7 @@
             <ul class="price-list">
                 <li><span data-en="Light Restoration" data-es="Restauración Faros">Restauración Faros</span> <b>$60</b></li>
                 <li><span data-en="Engine Cleaning" data-es="Motor">Motor</span> <b>$50</b></li>
-                <li><span data-en="Pet Hair" data-es="Pelo Mascota">Pelo Mascota</span> <b>$50</b></li>
+                <li><span data-en="Pet Hair" data-es="Pelo Mascota">Pet Hair</span> <b>$50</b></li>
                 <li><span data-en="Odor Removal" data-es="Olor">Olor</span> <b>$60</b></li>
             </ul>
             <span class="service-cat" data-en="Specialties" data-es="Especialidades">Specialties</span>
@@ -210,16 +196,20 @@
     </section>
 
     <footer>
-        <p data-en="&copy; 2026 AS Detailing - Premium Automotive Care" data-es="&copy; 2026 AS Detailing - Premium Automotive Care">&copy; 2026 AS Detailing - Premium Automotive Care</p>
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/TU_USUARIO" class="social-btn" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/TU_PAGINA" class="social-btn" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <p class="copyright-text" data-en="&copy; 2026 AS Detailing - Premium Automotive Care" data-es="&copy; 2026 AS Detailing - Cuidado Automotriz Premium">
+            &copy; 2026 AS Detailing - Premium Automotive Care
+        </p>
     </footer>
 
     <script>
-        // CARGA ORIGINAL
         window.addEventListener('load', () => {
             setTimeout(() => { document.body.classList.add('loaded'); scrollReveal(); }, 2500);
         });
 
-        // TRADUCTOR
         let currentLang = 'en';
         function toggleLang() {
             currentLang = currentLang === 'en' ? 'es' : 'en';
@@ -230,15 +220,13 @@
             document.querySelector('.lang-btn').textContent = currentLang === 'en' ? 'EN / ES' : 'ES / EN';
         }
 
-        // MENÚ MÓVIL
         const menuToggle = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
         menuToggle.onclick = () => navList.classList.toggle('active');
 
-        // ANIMACIÓN REVEAL
         const scrollReveal = () => {
             document.querySelectorAll('.reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
+                if (el.getBoundingClientRect().top < window.innerHeight - 30) el.classList.add('active');
             });
         };
         window.onscroll = scrollReveal;
