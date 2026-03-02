@@ -3,117 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AS Detailing | Experiencia Premium</title>
+    <title>AS Detailing | High-End Car Care</title>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --primary: #000000;
-            --secondary: #007bff;
-            --accent: #00d4ff;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+        /* ========================================== */
+        /* CONFIGURACIÓN VISUAL (ESTILO PREMIUM)      */
+        /* ========================================== */
+        :root { 
+            --primary: #000; 
+            --secondary: #007bff; 
+            --white: #fff; 
+            --glass: rgba(255, 255, 255, 0.05); 
+            --glass-border: rgba(255, 255, 255, 0.1); 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
         html { scroll-behavior: smooth; }
-
-        body {
-            background-color: #0a0a0a;
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
+        body { background-color: #0a0a0a; color: var(--white); overflow-x: hidden; line-height: 1.6; }
+        
+        /* NAVBAR */
+        header { 
+            position: fixed; top: 0; width: 100%; z-index: 9999; 
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); 
+            padding: 15px 0; border-bottom: 1px solid var(--glass-border); 
         }
-
-        /* --- NAVEGACIÓN PREMIUM --- */
-        header {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(15px);
-            padding: 15px 0; border-bottom: 1px solid var(--glass-border);
-        }
-        nav { 
-            max-width: 1200px; margin: auto; display: flex; 
-            justify-content: space-between; align-items: center; padding: 0 20px; 
-        }
+        nav { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .logo { font-weight: 700; font-size: 1.4rem; letter-spacing: 3px; text-decoration: none; color: var(--white); }
         .logo span { color: var(--secondary); }
-
         .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
-        .nav-links a { 
-            color: white; text-decoration: none; font-size: 0.85rem; 
-            font-weight: 400; text-transform: uppercase; transition: 0.3s;
-        }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--secondary); }
-
-        .lang-btn {
-            background: transparent; border: 1px solid var(--secondary);
-            color: white; padding: 5px 12px; border-radius: 4px; cursor: pointer;
-            font-size: 0.75rem; transition: 0.3s;
-        }
-        .lang-btn:hover { background: var(--secondary); }
-
-        /* --- SECCIONES COMUNES --- */
+        .lang-btn { background: transparent; border: 1px solid var(--secondary); color: white; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+        
+        /* SECCIONES */
         section { padding: 100px 20px; max-width: 1200px; margin: auto; }
         .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px; }
         .section-title span { color: var(--secondary); }
+        
+        /* ANIMACIONES */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* --- HERO --- */
-        .hero {
-            height: 100vh; max-width: 100%;
-            display: flex; align-items: center; justify-content: center;
+        
+        /* HERO */
+        .hero { 
+            height: 100vh; max-width: 100%; display: flex; align-items: center; justify-content: center; 
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1599256621730-535171e28e50?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover; background-position: center; text-align: center;
+                        url('https://images.unsplash.com/photo-1599256621730-535171e28e50?q=80&w=2000&auto=format&fit=crop'); 
+            background-size: cover; background-position: center; text-align: center; 
         }
-
-        /* --- COMPARADOR ANTES/DESPUÉS --- */
-        .comparison-container {
-            width: 100%; max-width: 800px; margin: 0 auto;
-            position: relative; aspect-ratio: 16/9; overflow: hidden;
-            border-radius: 15px; border: 1px solid var(--glass-border);
+        
+        /* SLIDER ANTES Y DESPUÉS */
+        .comparison-container { 
+            width: 100%; max-width: 800px; margin: 0 auto; position: relative; 
+            aspect-ratio: 16/9; overflow: hidden; border-radius: 15px; 
+            border: 1px solid var(--glass-border); touch-action: none; 
         }
-        .comparison-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; }
+        .comparison-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; pointer-events: none; }
         .after-img { background-image: url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?q=80&w=800&auto=format&fit=crop'); }
         .before-img { 
             background-image: url('https://images.unsplash.com/photo-1562141982-c438997f7423?q=80&w=800&auto=format&fit=crop'); 
-            width: 50%; border-right: 3px solid var(--secondary); z-index: 2;
+            width: 50%; border-right: 3px solid var(--secondary); z-index: 2; 
         }
-        .slider-handle {
-            position: absolute; top: 0; left: 50%; height: 100%; width: 4px;
-            background: var(--secondary); z-index: 3; cursor: ew-resize; transform: translateX(-50%);
+        .slider-handle { 
+            position: absolute; top: 0; left: 50%; height: 100%; width: 4px; 
+            background: var(--secondary); z-index: 3; cursor: ew-resize; 
+            transform: translateX(-50%); pointer-events: none; 
         }
-
-        /* --- SECCIÓN DE PRECIOS (GLASSMORPHISM) --- */
-        .pricing-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px; margin-top: 50px;
-        }
-        .price-card {
-            background: var(--glass); backdrop-filter: blur(15px);
-            padding: 40px; border-radius: 20px; border: 1px solid var(--glass-border);
-            text-align: center; transition: 0.4s; position: relative;
-        }
+        
+        /* PRECIOS */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        .price-card { background: var(--glass); backdrop-filter: blur(15px); padding: 40px; border-radius: 20px; border: 1px solid var(--glass-border); text-align: center; transition: 0.4s; }
         .price-card.featured { border-color: var(--secondary); transform: scale(1.05); background: rgba(0, 123, 255, 0.05); }
         .price-card:hover { transform: translateY(-10px); border-color: var(--secondary); }
-        
         .price-card h3 { font-size: 1.5rem; margin-bottom: 10px; color: var(--secondary); }
         .price-card .cost { font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; }
         .price-card ul { list-style: none; margin-bottom: 30px; text-align: left; }
-        .price-card ul li { margin-bottom: 10px; font-size: 0.9rem; color: #ccc; }
+        .price-card ul li { margin-bottom: 10px; font-size: 0.9rem; color: #ccc; display: flex; align-items: center; }
         .price-card ul li i { color: var(--secondary); margin-right: 10px; }
-
-        /* --- BOTONES --- */
-        .btn-premium {
-            padding: 15px 35px; background: var(--secondary); color: white;
-            text-decoration: none; border-radius: 5px; font-weight: bold;
-            display: inline-block; transition: 0.3s; letter-spacing: 1px;
-        }
+        
+        /* BOTÓN */
+        .btn-premium { padding: 15px 35px; background: var(--secondary); color: white; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; transition: 0.3s; letter-spacing: 1px; border: none; cursor: pointer; text-align: center; }
         .btn-premium:hover { box-shadow: 0 0 20px var(--secondary); transform: scale(1.05); }
-
+        
         footer { background: #050505; padding: 60px 20px; text-align: center; border-top: 1px solid var(--glass-border); }
     </style>
 </head>
@@ -126,16 +100,16 @@
                 <li><a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a></li>
                 <li><a href="#resultados" data-es="Resultados" data-en="Results">Resultados</a></li>
                 <li><a href="#precios" data-es="Precios" data-en="Pricing">Precios</a></li>
-                <li><button class="lang-btn" onclick="toggleLang()">ES/EN</button></li>
+                <li><button class="lang-btn" onclick="toggleLang()">ES / EN</button></li>
             </ul>
         </nav>
     </header>
 
     <section id="inicio" class="hero">
         <div class="reveal">
-            <h1 id="t-title" data-es="LA PERFECCIÓN ES EL ESTÁNDAR" data-en="PERFECTION IS THE STANDARD">LA PERFECCIÓN ES EL ESTÁNDAR</h1>
+            <h1 data-es="LA PERFECCIÓN ES EL ESTÁNDAR" data-en="PERFECTION IS THE STANDARD">LA PERFECCIÓN ES EL ESTÁNDAR</h1>
             <p style="margin: 20px 0 40px;" data-es="Detallado automotriz de alta gama para clientes exigentes." data-en="High-end automotive detailing for demanding clients.">Detallado automotriz de alta gama para clientes exigentes.</p>
-            <a href="https://wa.me/TUNUMERODEWHATSAPP" class="btn-premium" data-es="RESERVAR AHORA" data-en="BOOK NOW">RESERVAR AHORA</a>
+            <a href="https://wa.me/TUNUMERO" class="btn-premium" data-es="RESERVAR AHORA" data-en="BOOK NOW">RESERVAR AHORA</a>
         </div>
     </section>
 
@@ -151,60 +125,64 @@
     <section id="precios">
         <h2 class="section-title" data-es="PLANES Y <span>PAQUETES</span>" data-en="PLANS & <span>PACKAGES</span>">PLANES Y <span>PAQUETES</span></h2>
         <div class="pricing-grid">
+            
             <div class="price-card reveal">
                 <h3 data-es="Express" data-en="Express">Express</h3>
                 <div class="cost">$45</div>
                 <ul>
                     <li><i class="fas fa-check"></i> <span data-es="Lavado Exterior" data-en="Exterior Wash">Lavado Exterior</span></li>
                     <li><i class="fas fa-check"></i> <span data-es="Aspirado Básico" data-en="Basic Vacuum">Aspirado Básico</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Limpieza de Rines" data-en="Wheel Cleaning">Limpieza de Rines</span></li>
                     <li><i class="fas fa-check"></i> <span data-es="Brillo de Llantas" data-en="Tire Shine">Brillo de Llantas</span></li>
                 </ul>
-                <a href="https://wa.me/TUNUMERODEWHATSAPP" class="btn-premium" style="width:100%" data-es="ELEGIR" data-en="CHOOSE">ELEGIR</a>
+                <a href="https://wa.me/TUNUMERO" class="btn-premium" style="width:100%" data-es="ELEGIR" data-en="CHOOSE">ELEGIR</a>
             </div>
 
             <div class="price-card featured reveal">
                 <h3 data-es="Full Detail" data-en="Full Detail">Full Detail</h3>
                 <div class="cost">$120</div>
                 <ul>
-                    <li><i class="fas fa-check"></i> <span data-es="Descontaminado de Pintura" data-en="Paint Decontamination">Descontaminado de Pintura</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Lavado de Motor" data-en="Engine Bay Cleaning">Lavado de Motor</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Limpieza de Interiores Pro" data-en="Pro Interior Cleaning">Limpieza de Interiores Pro</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Sellado de Pintura (6 meses)" data-en="Paint Sealing (6 months)">Sellado de Pintura (6 meses)</span></li>
+                    <li><i class="fas fa-check"></i> <span data-es="Descontaminado Pro" data-en="Pro Decon">Descontaminado Pro</span></li>
+                    <li><i class="fas fa-check"></i> <span data-es="Lavado de Motor" data-en="Engine Cleaning">Lavado de Motor</span></li>
+                    <li><i class="fas fa-check"></i> <span data-es="Sellado de Pintura" data-en="Paint Sealant">Sellado de Pintura</span></li>
                 </ul>
-                <a href="https://wa.me/TUNUMERODEWHATSAPP" class="btn-premium" style="width:100%" data-es="RECOMENDADO" data-en="RECOMMENDED">RECOMENDADO</a>
+                <a href="https://wa.me/TUNUMERO" class="btn-premium" style="width:100%" data-es="RECOMENDADO" data-en="RECOMMENDED">RECOMENDADO</a>
             </div>
 
             <div class="price-card reveal">
-                <h3 data-es="Ceramic Pro" data-en="Ceramic Pro">Ceramic Pro</h3>
+                <h3 data-es="Ceramic 9H" data-en="Ceramic 9H">Ceramic 9H</h3>
                 <div class="cost">$350</div>
                 <ul>
                     <li><i class="fas fa-check"></i> <span data-es="Corrección de Pintura" data-en="Paint Correction">Corrección de Pintura</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Recubrimiento Cerámico 9H" data-en="9H Ceramic Coating">Recubrimiento Cerámico 9H</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Protección de Cristales" data-en="Glass Protection">Protección de Cristales</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Garantía 2 Años" data-en="2 Year Warranty">Garantía 2 Años</span></li>
+                    <li><i class="fas fa-check"></i> <span data-es="Cerámico 2 Años" data-en="2 Year Ceramic">Cerámico 2 Años</span></li>
+                    <li><i class="fas fa-check"></i> <span data-es="Protección Cristales" data-en="Glass Protection">Protección Cristales</span></li>
                 </ul>
-                <a href="https://wa.me/TUNUMERODEWHATSAPP" class="btn-premium" style="width:100%" data-es="ELEGIR" data-en="CHOOSE">ELEGIR</a>
+                <a href="https://wa.me/TUNUMERO" class="btn-premium" style="width:100%" data-es="ELEGIR" data-en="CHOOSE">ELEGIR</a>
             </div>
+
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 AS Detailing - Premium Car Care</p>
+        <p data-es="&copy; 2026 AS Detailing - Automotive Care" data-en="&copy; 2026 AS Detailing - Automotive Care">&copy; 2026 AS Detailing - Automotive Care</p>
         <div style="margin-top: 20px;">
-            <a href="#" style="color:white; margin: 0 10px; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-            <a href="#" style="color:white; margin: 0 10px; font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" style="color:white; margin: 0 15px; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/TUNUMERO" style="color:white; margin: 0 15px; font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
         </div>
     </footer>
 
     <script>
-        // --- SLIDER LÓGICA ---
+        // SLIDER LÓGICA
         const slider = document.getElementById('slider');
         const before = document.getElementById('before');
         const handle = document.getElementById('handle');
 
-        const moveSlider = (e) => {
-            let x = e.type.includes('touch') ? e.touches[0].clientX - slider.getBoundingClientRect().left : e.offsetX;
+        const move = (e) => {
+            let x;
+            if (e.type === 'touchmove') {
+                x = e.touches[0].clientX - slider.getBoundingClientRect().left;
+            } else {
+                x = e.offsetX;
+            }
             let width = slider.offsetWidth;
             if (x < 0) x = 0; if (x > width) x = width;
             let percentage = (x / width) * 100;
@@ -212,10 +190,10 @@
             handle.style.left = percentage + '%';
         };
 
-        slider.addEventListener('mousemove', moveSlider);
-        slider.addEventListener('touchmove', moveSlider);
+        slider.addEventListener('mousemove', move);
+        slider.addEventListener('touchmove', move, { passive: true });
 
-        // --- REVEAL ANIMATION ---
+        // ANIMACIÓN DE APARICIÓN
         const scrollReveal = () => {
             document.querySelectorAll('.reveal').forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
@@ -223,7 +201,7 @@
         };
         window.addEventListener('scroll', scrollReveal);
 
-        // --- TRADUCCIÓN ---
+        // TRADUCTOR
         let currentLang = 'es';
         function toggleLang() {
             currentLang = currentLang === 'es' ? 'en' : 'es';
@@ -233,7 +211,10 @@
             });
         }
 
-        window.onload = () => { scrollReveal(); document.querySelector('.hero .reveal').classList.add('active'); };
+        window.onload = () => { 
+            scrollReveal(); 
+            document.querySelector('.hero .reveal').classList.add('active'); 
+        };
     </script>
 </body>
 </html>
