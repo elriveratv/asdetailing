@@ -1,221 +1,247 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AS Detailing | High-End Car Care</title>
+    <title>AS Detailing | Final Stable Version</title>
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ========================================== */
-        /* CONFIGURACIÓN VISUAL (ESTILO PREMIUM)      */
-        /* ========================================== */
         :root { 
-            --primary: #000; 
-            --secondary: #007bff; 
-            --white: #fff; 
-            --glass: rgba(255, 255, 255, 0.05); 
-            --glass-border: rgba(255, 255, 255, 0.1); 
+            --primary: #000; --secondary: #007bff; --white: #fff; 
+            --glass: rgba(255, 255, 255, 0.05); --glass-border: rgba(255, 255, 255, 0.1); 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
         html { scroll-behavior: smooth; }
         body { background-color: #0a0a0a; color: var(--white); overflow-x: hidden; line-height: 1.6; }
-        
-        /* NAVBAR */
+
+        /* --- PRELOADER ORIGINAL (RESTAURADO) --- */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 10000; display: flex;
+            flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+        .loader-logo {
+            font-weight: 700; font-size: 2rem; letter-spacing: 5px; color: #fff;
+            margin-bottom: 20px; text-transform: uppercase;
+        }
+        .loader-bar-container {
+            width: 200px; height: 2px; background: rgba(255,255,255,0.1);
+            position: relative; overflow: hidden; border-radius: 10px;
+        }
+        .loader-bar {
+            position: absolute; width: 0; height: 100%;
+            background: var(--secondary); box-shadow: 0 0 15px var(--secondary);
+            animation: load 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes load { 0% { width: 0; } 100% { width: 100%; } }
+        .loaded #preloader { opacity: 0; visibility: hidden; }
+
+        /* --- MENÚ VERIFICADO (FULL ELEMENTS) --- */
         header { 
             position: fixed; top: 0; width: 100%; z-index: 9999; 
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); 
+            background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); 
             padding: 15px 0; border-bottom: 1px solid var(--glass-border); 
         }
         nav { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .logo { font-weight: 700; font-size: 1.4rem; letter-spacing: 3px; text-decoration: none; color: var(--white); }
+        .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 2px; text-decoration: none; color: var(--white); }
         .logo span { color: var(--secondary); }
+        
+        .menu-toggle { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
         .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
-        .nav-links a { color: white; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; font-weight: 400; }
         .nav-links a:hover { color: var(--secondary); }
-        .lang-btn { background: transparent; border: 1px solid var(--secondary); color: white; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
-        
-        /* SECCIONES */
-        section { padding: 100px 20px; max-width: 1200px; margin: auto; }
-        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px; }
-        .section-title span { color: var(--secondary); }
-        
-        /* ANIMACIONES */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 75%;
+                background: rgba(0, 0, 0, 0.98); backdrop-filter: blur(20px);
+                flex-direction: column; justify-content: center; 
+                transition: 0.5s ease; border-left: 1px solid var(--secondary);
+            }
+            .nav-links.active { right: 0; }
+            .nav-links li { margin: 15px 0; }
+        }
+
+        .lang-btn { background: transparent; border: 1px solid var(--secondary); color: white; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+
+        /* --- HERO & TITLES --- */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1599256621730-535171e28e50?q=80&w=2000'); background-size: cover; background-position: center; }
+        .premium-title { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 700; letter-spacing: 5px; text-transform: uppercase; background: linear-gradient(to right, #fff, var(--secondary), #fff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 4s linear infinite; }
+        @keyframes shine { to { background-position: 200% center; } }
+        .section-title { text-align: center; font-size: clamp(1.5rem, 5vw, 2.2rem); margin: 50px 0; text-transform: uppercase; letter-spacing: 6px; }
+
+        /* --- GALLERY SHOWCASE --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 0 20px; max-width: 1200px; margin: 0 auto 50px; }
+        .gallery-item { position: relative; height: 300px; border-radius: 15px; overflow: hidden; border: 1px solid var(--glass-border); cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .item-overlay { position: absolute; bottom: 0; left: 0; width: 100%; height: 40%; background: linear-gradient(transparent, rgba(0,123,255,0.8)); display: flex; align-items: flex-end; padding: 20px; opacity: 0; transition: 0.4s; }
+        .gallery-item:hover .item-overlay { opacity: 1; }
+
+        /* --- PRICING GRILL --- */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px 50px; max-width: 1200px; margin: auto; }
+        .price-card { background: var(--glass); backdrop-filter: blur(15px); padding: 25px; border-radius: 15px; border: 1px solid var(--glass-border); transition: 0.4s; display: flex; flex-direction: column; }
+        .price-card h3 { color: var(--secondary); font-size: 1rem; margin-bottom: 5px; text-transform: uppercase; text-decoration: underline; font-style: italic; }
+        .duration { font-size: 0.75rem; color: #888; margin-bottom: 15px; font-style: italic; }
+        .price-list { list-style: none; margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
+        .price-list li { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 5px; color: #eee; font-weight: bold; }
+        .service-cat { font-size: 0.8rem; color: var(--secondary); font-weight: bold; text-transform: uppercase; margin-top: 10px; display: block; }
+        .service-desc { font-size: 0.8rem; color: #ccc; margin-bottom: 10px; line-height: 1.4; }
+        .btn-premium { margin-top: auto; width: 100%; padding: 12px; background: var(--secondary); color: white; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center; border: none; cursor: pointer; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
-        /* HERO */
-        .hero { 
-            height: 100vh; max-width: 100%; display: flex; align-items: center; justify-content: center; 
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1599256621730-535171e28e50?q=80&w=2000&auto=format&fit=crop'); 
-            background-size: cover; background-position: center; text-align: center; 
-        }
-        
-        /* SLIDER ANTES Y DESPUÉS */
-        .comparison-container { 
-            width: 100%; max-width: 800px; margin: 0 auto; position: relative; 
-            aspect-ratio: 16/9; overflow: hidden; border-radius: 15px; 
-            border: 1px solid var(--glass-border); touch-action: none; 
-        }
-        .comparison-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; pointer-events: none; }
-        .after-img { background-image: url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?q=80&w=800&auto=format&fit=crop'); }
-        .before-img { 
-            background-image: url('https://images.unsplash.com/photo-1562141982-c438997f7423?q=80&w=800&auto=format&fit=crop'); 
-            width: 50%; border-right: 3px solid var(--secondary); z-index: 2; 
-        }
-        .slider-handle { 
-            position: absolute; top: 0; left: 50%; height: 100%; width: 4px; 
-            background: var(--secondary); z-index: 3; cursor: ew-resize; 
-            transform: translateX(-50%); pointer-events: none; 
-        }
-        
-        /* PRECIOS */
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
-        .price-card { background: var(--glass); backdrop-filter: blur(15px); padding: 40px; border-radius: 20px; border: 1px solid var(--glass-border); text-align: center; transition: 0.4s; }
-        .price-card.featured { border-color: var(--secondary); transform: scale(1.05); background: rgba(0, 123, 255, 0.05); }
-        .price-card:hover { transform: translateY(-10px); border-color: var(--secondary); }
-        .price-card h3 { font-size: 1.5rem; margin-bottom: 10px; color: var(--secondary); }
-        .price-card .cost { font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; }
-        .price-card ul { list-style: none; margin-bottom: 30px; text-align: left; }
-        .price-card ul li { margin-bottom: 10px; font-size: 0.9rem; color: #ccc; display: flex; align-items: center; }
-        .price-card ul li i { color: var(--secondary); margin-right: 10px; }
-        
-        /* BOTÓN */
-        .btn-premium { padding: 15px 35px; background: var(--secondary); color: white; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; transition: 0.3s; letter-spacing: 1px; border: none; cursor: pointer; text-align: center; }
-        .btn-premium:hover { box-shadow: 0 0 20px var(--secondary); transform: scale(1.05); }
-        
-        footer { background: #050505; padding: 60px 20px; text-align: center; border-top: 1px solid var(--glass-border); }
+        footer { padding: 40px; text-align: center; border-top: 1px solid var(--glass-border); font-size: 0.7rem; color: #666; }
     </style>
 </head>
 <body>
 
+    <div id="preloader">
+        <div class="loader-logo">AS <span>DETAILING</span></div>
+        <div class="loader-bar-container">
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
     <header>
         <nav>
             <a href="#" class="logo">AS <span>DETAILING</span></a>
-            <ul class="nav-links">
-                <li><a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a></li>
-                <li><a href="#resultados" data-es="Resultados" data-en="Results">Resultados</a></li>
-                <li><a href="#precios" data-es="Precios" data-en="Pricing">Precios</a></li>
-                <li><button class="lang-btn" onclick="toggleLang()">ES / EN</button></li>
+            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="nav-list">
+                <li><a href="#inicio" data-en="Home" data-es="Inicio">Home</a></li>
+                <li><a href="#gallery" data-en="Gallery" data-es="Galería">Gallery</a></li>
+                <li><a href="#precios" data-en="Plans" data-es="Planes">Plans</a></li>
+                <li><button class="lang-btn" onclick="toggleLang()">EN / ES</button></li>
             </ul>
         </nav>
     </header>
 
-    <section id="inicio" class="hero">
+    <section class="hero" id="inicio">
         <div class="reveal">
-            <h1 data-es="LA PERFECCIÓN ES EL ESTÁNDAR" data-en="PERFECTION IS THE STANDARD">LA PERFECCIÓN ES EL ESTÁNDAR</h1>
-            <p style="margin: 20px 0 40px;" data-es="Detallado automotriz de alta gama para clientes exigentes." data-en="High-end automotive detailing for demanding clients.">Detallado automotriz de alta gama para clientes exigentes.</p>
-            <a href="https://wa.me/TUNUMERO" class="btn-premium" data-es="RESERVAR AHORA" data-en="BOOK NOW">RESERVAR AHORA</a>
+            <h1 class="premium-title">
+                <span data-en="PERFECTION IS THE STANDARD" data-es="LA PERFECCIÓN ES EL ESTÁNDAR">PERFECTION IS THE STANDARD</span>
+            </h1>
+            <p style="text-align:center; opacity: 0.8;">
+                <span data-en="High-end automotive care" data-es="Cuidado automotriz de alta gama">High-end automotive care</span>
+            </p>
         </div>
     </section>
 
-    <section id="resultados">
-        <h2 class="section-title" data-es="NUESTROS <span>RESULTADOS</span>" data-en="OUR <span>RESULTS</span>">NUESTROS <span>RESULTADOS</span></h2>
-        <div class="comparison-container" id="slider">
-            <div class="comparison-img after-img"></div>
-            <div class="comparison-img before-img" id="before"></div>
-            <div class="slider-handle" id="handle"></div>
+    <section id="gallery">
+        <h2 class="section-title reveal" data-en="WORK SHOWCASE" data-es="GALERÍA DE TRABAJOS">WORK SHOWCASE</h2>
+        <div class="gallery-grid reveal">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?q=80&w=800"><div class="item-overlay"><span data-en="Interior Pro" data-es="Interior Pro">Interior Pro</span></div></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?q=80&w=800"><div class="item-overlay"><span data-en="Paint Correction" data-es="Corrección Pintura">Paint Correction</span></div></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1552930294-6b595f4c2974?q=80&w=800"><div class="item-overlay"><span data-en="Ceramic Coating" data-es="Cerámico">Ceramic Coating</span></div></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1597404298347-881a499017ad?q=80&w=800"><div class="item-overlay"><span data-en="Engine Bay" data-es="Limpieza Motor">Engine Bay</span></div></div>
         </div>
     </section>
 
-    <section id="precios">
-        <h2 class="section-title" data-es="PLANES Y <span>PAQUETES</span>" data-en="PLANS & <span>PACKAGES</span>">PLANES Y <span>PAQUETES</span></h2>
-        <div class="pricing-grid">
-            
-            <div class="price-card reveal">
-                <h3 data-es="Express" data-en="Express">Express</h3>
-                <div class="cost">$45</div>
-                <ul>
-                    <li><i class="fas fa-check"></i> <span data-es="Lavado Exterior" data-en="Exterior Wash">Lavado Exterior</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Aspirado Básico" data-en="Basic Vacuum">Aspirado Básico</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Brillo de Llantas" data-en="Tire Shine">Brillo de Llantas</span></li>
-                </ul>
-                <a href="https://wa.me/TUNUMERO" class="btn-premium" style="width:100%" data-es="ELEGIR" data-en="CHOOSE">ELEGIR</a>
-            </div>
+    <section id="precios" class="pricing-grid">
+        <div class="price-card reveal">
+            <h3 data-en="100% Hand Carwash" data-es="100% Hand Carwash">100% Hand Carwash</h3>
+            <span class="duration" data-en="(1-2 hours)" data-es="(1-2 horas)">(1-2 hours)</span>
+            <ul class="price-list">
+                <li>Sedans: <b>$70-$90</b></li>
+                <li>Mid-Size SUV's: <b>$80-$100</b></li>
+                <li>Large Trucks: <b>$120-$140</b></li>
+                <li>Commercial: <b>$140-$160</b></li>
+            </ul>
+            <span class="service-cat" data-en="Exterior" data-es="Exterior">Exterior</span>
+            <p class="service-desc" data-en="Hand Foam Wash, Windows, Tire Dressing." data-es="Lavado Espuma, Vidrios, Brillo Llantas.">Hand Foam Wash, Windows, Tire Dressing.</p>
+            <span class="service-cat" data-en="Interior" data-es="Interior">Interior</span>
+            <p class="service-desc" data-en="Vacuum, Dashboard cleaning, Air Freshener." data-es="Aspirado, Tablero, Aromatizante.">Vacuum, Dashboard cleaning, Air Freshener.</p>
+            <a href="https://wa.me/TUNUMERO?text=Hello! I am interested in the Hand Carwash plan." class="btn-premium" data-en="BOOK" data-es="RESERVAR">BOOK</a>
+        </div>
 
-            <div class="price-card featured reveal">
-                <h3 data-es="Full Detail" data-en="Full Detail">Full Detail</h3>
-                <div class="cost">$120</div>
-                <ul>
-                    <li><i class="fas fa-check"></i> <span data-es="Descontaminado Pro" data-en="Pro Decon">Descontaminado Pro</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Lavado de Motor" data-en="Engine Cleaning">Lavado de Motor</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Sellado de Pintura" data-en="Paint Sealant">Sellado de Pintura</span></li>
-                </ul>
-                <a href="https://wa.me/TUNUMERO" class="btn-premium" style="width:100%" data-es="RECOMENDADO" data-en="RECOMMENDED">RECOMENDADO</a>
-            </div>
+        <div class="price-card reveal">
+            <h3 data-en="Mini Detail" data-es="Mini Detail">Mini Detail</h3>
+            <span class="duration" data-en="(4 hours)" data-es="(4 horas)">(4 hours)</span>
+            <ul class="price-list">
+                <li>Sedans: <b>$200-$220</b></li>
+                <li>Mid-Size SUV's: <b>$220-$240</b></li>
+                <li>Large Trucks: <b>$280-$300</b></li>
+                <li>Larger Trucks: <b>$280-$320</b></li>
+            </ul>
+            <span class="service-cat" data-en="Exterior" data-es="Exterior">Exterior</span>
+            <p class="service-desc" data-en="Clay Bar, Wax, Tire Dressing." data-es="Clay Bar, Cera, Brillo Llantas.">Clay Bar, Wax, Tire Dressing.</p>
+            <span class="service-cat" data-en="Interior" data-es="Interior">Interior</span>
+            <p class="service-desc" data-en="Deep Vacuum, Compressed Air, Dashboard Wipe." data-es="Aspirado Profundo, Aire Comprimido, Tablero.">Deep Vacuum, Compressed Air, Dashboard Wipe.</p>
+            <a href="https://wa.me/TUNUMERO?text=Hello! I am interested in the Mini Detail plan." class="btn-premium" data-en="BOOK" data-es="RESERVAR">BOOK</a>
+        </div>
 
-            <div class="price-card reveal">
-                <h3 data-es="Ceramic 9H" data-en="Ceramic 9H">Ceramic 9H</h3>
-                <div class="cost">$350</div>
-                <ul>
-                    <li><i class="fas fa-check"></i> <span data-es="Corrección de Pintura" data-en="Paint Correction">Corrección de Pintura</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Cerámico 2 Años" data-en="2 Year Ceramic">Cerámico 2 Años</span></li>
-                    <li><i class="fas fa-check"></i> <span data-es="Protección Cristales" data-en="Glass Protection">Protección Cristales</span></li>
-                </ul>
-                <a href="https://wa.me/TUNUMERO" class="btn-premium" style="width:100%" data-es="ELEGIR" data-en="CHOOSE">ELEGIR</a>
-            </div>
+        <div class="price-card reveal" style="border-color:var(--secondary)">
+            <h3 data-en="Full Detail" data-es="Full Detail">Full Detail</h3>
+            <span class="duration" data-en="(6 hours)" data-es="(6 horas)">(6 hours)</span>
+            <ul class="price-list">
+                <li>Sedans: <b>$280</b></li>
+                <li>Mid-Size SUV's: <b>$300</b></li>
+                <li>Large Trucks: <b>$340</b></li>
+                <li>Larger Trucks: <b>$360</b></li>
+            </ul>
+            <span class="service-cat" data-en="Exterior" data-es="Exterior">Exterior</span>
+            <p class="service-desc" data-en="Clay Bar, Polish and Wax, Tire Dressing." data-es="Clay Bar, Pulido y Cera, Brillo Llantas.">Clay Bar, Polish and Wax, Tire Dressing.</p>
+            <span class="service-cat" data-en="Interior" data-es="Interior">Interior</span>
+            <p class="service-desc" data-en="Shampoo Upholstery, Leather condition." data-es="Shampoo Tapicería, Hidratado Cuero.">Shampoo Upholstery, Leather condition.</p>
+            <a href="https://wa.me/TUNUMERO?text=Hello! I am interested in the Full Detail plan." class="btn-premium" data-en="BOOK" data-es="RESERVAR">BOOK</a>
+        </div>
 
+        <div class="price-card reveal">
+            <h3 data-en="Other Services" data-es="Otros Servicios">Other Services</h3>
+            <span class="duration" data-en="Pro Extras" data-es="Extras Pro">Pro Extras</span>
+            <ul class="price-list">
+                <li><span data-en="Light Restoration" data-es="Restauración Faros">Restauración Faros</span> <b>$60</b></li>
+                <li><span data-en="Engine Cleaning" data-es="Motor">Motor</span> <b>$50</b></li>
+                <li><span data-en="Pet Hair" data-es="Pelo Mascota">Pelo Mascota</span> <b>$50</b></li>
+                <li><span data-en="Odor Removal" data-es="Olor">Olor</span> <b>$60</b></li>
+            </ul>
+            <span class="service-cat" data-en="Specialties" data-es="Especialidades">Specialties</span>
+            <p class="service-desc" data-en="Ceramic, Boats, Jet Skis, Equipment." data-es="Cerámico, Botes, Jet Skis, Maquinaria.">Ceramic, Boats, Jet Skis, Equipment.</p>
+            <a href="https://wa.me/TUNUMERO?text=Hello! I would like a quote for Other Services." class="btn-premium" data-en="QUOTE" data-es="COTIZAR">QUOTE</a>
         </div>
     </section>
 
     <footer>
-        <p data-es="&copy; 2026 AS Detailing - Automotive Care" data-en="&copy; 2026 AS Detailing - Automotive Care">&copy; 2026 AS Detailing </p>
-        <div style="margin-top: 20px;">
-            <a href="#" style="color:white; margin: 0 15px; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/TUNUMERO" style="color:white; margin: 0 15px; font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
-        </div>
+        <p data-en="&copy; 2026 AS Detailing - Premium Automotive Care" data-es="&copy; 2026 AS Detailing - Premium Automotive Care">&copy; 2026 AS Detailing - Premium Automotive Care</p>
     </footer>
 
     <script>
-        // SLIDER LÓGICA
-        const slider = document.getElementById('slider');
-        const before = document.getElementById('before');
-        const handle = document.getElementById('handle');
-
-        const move = (e) => {
-            let x;
-            if (e.type === 'touchmove') {
-                x = e.touches[0].clientX - slider.getBoundingClientRect().left;
-            } else {
-                x = e.offsetX;
-            }
-            let width = slider.offsetWidth;
-            if (x < 0) x = 0; if (x > width) x = width;
-            let percentage = (x / width) * 100;
-            before.style.width = percentage + '%';
-            handle.style.left = percentage + '%';
-        };
-
-        slider.addEventListener('mousemove', move);
-        slider.addEventListener('touchmove', move, { passive: true });
-
-        // ANIMACIÓN DE APARICIÓN
-        const scrollReveal = () => {
-            document.querySelectorAll('.reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
-            });
-        };
-        window.addEventListener('scroll', scrollReveal);
+        // CARGA ORIGINAL
+        window.addEventListener('load', () => {
+            setTimeout(() => { document.body.classList.add('loaded'); scrollReveal(); }, 2500);
+        });
 
         // TRADUCTOR
-        let currentLang = 'es';
+        let currentLang = 'en';
         function toggleLang() {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
-            document.querySelectorAll('[data-es]').forEach(el => {
-                const text = el.getAttribute(`data-${currentLang}`);
-                if(text) el.innerText = text;
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const translation = el.getAttribute(`data-${currentLang}`);
+                if (translation) el.textContent = translation;
             });
+            document.querySelector('.lang-btn').textContent = currentLang === 'en' ? 'EN / ES' : 'ES / EN';
         }
 
-        window.onload = () => { 
-            scrollReveal(); 
-            document.querySelector('.hero .reveal').classList.add('active'); 
+        // MENÚ MÓVIL
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        menuToggle.onclick = () => navList.classList.toggle('active');
+
+        // ANIMACIÓN REVEAL
+        const scrollReveal = () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
+            });
         };
+        window.onscroll = scrollReveal;
     </script>
 </body>
 </html>
-
